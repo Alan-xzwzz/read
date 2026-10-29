@@ -21,6 +21,27 @@ http://ip:8080/(web阅读)
 
 web端不支持cookie的保存，不支持webview，漫画或者图片或者听书链接回因资源服务器禁止跨域而无法显示，app版才支持cookie的保存
 
+# 开发
+
+需要 JDK 19+，使用仓库自带的 Gradle Wrapper 即可：
+
+````bash
+./gradlew build      # 构建
+./gradlew run        # 开发启动，默认监听 8080
+./build.sh           # 清理并构建可执行 jar
+./run.sh             # 开发启动
+````
+
+构建产物为 `build/libs/solon-read-1.0-SNAPSHOT.jar`，运行时依赖在 `libs/`。首次运行会在工作目录生成 `read.db`、`storage/`、`cache/`、`logs/` 等数据，请从仓库根目录或部署目录启动。部署配置模板在 `conf/`，复制 `conf/conf.yml` 到工作目录即可覆盖默认配置。
+
+开发文档：
+
+- [AGENTS.md](AGENTS.md)：仓库级开发/代理指南、约定、常见坑
+- [docs/architecture.md](docs/architecture.md)：模块边界、请求链路、数据模型
+- [docs/adding-features.md](docs/adding-features.md)：新增 API、数据表、定时任务等步骤
+- [conf/README.md](conf/README.md)：配置模板与优先级
+- [samples/README.md](samples/README.md)：示例书源与书架数据
+
 # 演示后端
 https://qread.zeabur.app/     
 https://qread.zeabur.app/admin

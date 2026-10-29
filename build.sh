@@ -1,2 +1,13 @@
-#keytool -genkeypair -alias mykey -keyalg RSA -keystore mykeystore.jks -validity 365
-jarsigner -keystore /Users/q9uo11/mykeystore.jks -storepass 123456 -keypass 123456 build/libs/solon-read-1.0-SNAPSHOT.jar mykey
+#!/usr/bin/env bash
+# Build the application jar. Runtime dependencies are copied to ./libs and
+# referenced through the jar manifest Class-Path.
+set -euo pipefail
+cd "$(dirname "$0")"
+
+./gradlew clean build "$@"
+
+echo
+echo "Build finished."
+echo "Jar:  build/libs/solon-read-1.0-SNAPSHOT.jar"
+echo "Deps: libs/"
+echo "Run:  java -jar build/libs/solon-read-1.0-SNAPSHOT.jar"
